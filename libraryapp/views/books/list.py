@@ -1,5 +1,5 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from libraryapp.models import Book
 from ..connection import Connection
@@ -46,12 +46,12 @@ def book_list(request):
         return render(request, template, context)
 
     elif request.method == 'POST':
-        form_date = request.POST
+        form_data = request.POST
 
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
 
-            db.cursor.execute("""
+            db_cursor.execute("""
             INSERT INTO libraryapp_book
             (
                 title, author, isbn, year_published, location_id, librarian_id
