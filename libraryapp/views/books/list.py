@@ -44,3 +44,21 @@ def book_list(request):
         }
 
         return render(request, template, context)
+
+    elif request.method == 'POST':
+        form_date = request.POST
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db.cursor.execute("""
+            INSERT INTO libraryapp_book
+            (
+                title, author, isbn, year_published, location_id, librarian_id
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (form_data['title'], form_data['author'], form_data['isbn'], form_data['year_published'], form_data['location'], request.user.librarian.id)
+            )
+
+        return redirect(reverse('libraryapp:books'))
