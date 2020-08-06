@@ -1,10 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Library</title>
-    </head>
+{% extends 'shared/base.html' %}
+{% block content %}
     <body>
         <section id="book-details">
             <h1>{{ book.title }}</h1>
@@ -24,5 +19,4 @@
                 <button>Edit</button>
             </form>
         </section>
-    </body>
-</html>
+{% endblock %}
