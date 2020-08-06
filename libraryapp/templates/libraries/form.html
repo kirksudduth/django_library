@@ -1,11 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Bangazon</title>
-    </head>
-    <body>
+{% extends 'shared/base.html' %}
+{% block content %}
         <h1>Add Location</h1>
 
         <form action="{% url 'libraryapp:libraries' %}" method="POST">
@@ -21,5 +15,4 @@
 
             <input type="submit" value="Add Location" />
         </form>
-    </body>
-</html>
+{% endblock %}
